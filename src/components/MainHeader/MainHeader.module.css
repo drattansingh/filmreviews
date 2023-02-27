@@ -1,0 +1,20 @@
+.main-header {
+    top: 0;
+    left: 0;
+    width: calc(100%-2rem); /* minus 2 rem for the padding below, if not the window will stretch horizontally */
+    height: 8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #b842cf;
+    padding: 0 0 0 2rem;
+  }
+  
+  .main-header h1 {
+    color: white;
+  }
+
+  .searchbox{
+    left:35rem;
+    top:calc(8rem - 18px);
+  }

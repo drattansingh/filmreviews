@@ -1,0 +1,61 @@
+.card{
+    display: flex;
+    flex-Direction: column;
+    justify-Content: space-between;
+    border-Radius: px;
+    height: 100%;
+    position: relative;
+    margin-bottom: 2rem;
+    background-color: #f5e2f8;
+}
+
+.media{
+    height: 0;
+    padding-Top: 56.25%;
+    background-Color: rgba(36, 31, 31, 0.5);
+    background-blend-mode: darken;
+}
+
+.overlay{
+    position: absolute;
+    top: 20px;
+    left: 20px; 
+    color: white;
+}
+
+.overlay2{
+    position: absolute;
+    top: 20px;
+    right: 20px; 
+    color: white;
+}
+
+.actorlist{
+    /* border: 1px solid #180f0f; */
+    padding:0 16px;
+    margin:0;
+}
+
+.summary{
+    /* border: 1px solid #180f0f; */
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 20px 0 20px;
+}
+
+.rating{
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 20px 5px 20px;
+    font-style: italic;
+}
+
+.cardActions{
+    padding:0 16px 2px 16px;
+    display:flex;
+    justify-content: space-between;
+}
+
+.cardActions a{
+    margin-top: 0.2rem;
+}
