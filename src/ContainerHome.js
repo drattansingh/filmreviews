@@ -15,49 +15,16 @@ const ContainerHome=()=>
     // I had to useCallback to prevent this function from reloading when the useEffect reloads
     const LoadPosts=useCallback(async()=>{
         try{ 
-            const result=await fetch('http://localhost:5001/user/films',{
+            const result=await fetch(process.env.REACT_APP_NodeURL+'user/films',{
                 method:'GET',
-                headers:{
-                    'Content-Type': 'application/json',
-                }
+                headers:{ 'Content-Type': 'application/json',  }
             });
 
-            const resdata=await result.json(); // get the data from the server in json format
-            // console.log(data);
-            // setData(data);console.log(data); 
-
-            // setData(resdata.map(film=>{
-            //         return{
-            //             // ...film,
-            //             // ImagePath:film.imageUrl
-            //             message: film.message
-            //         }
-            //     })
-            // ); 
-
-            console.log(resdata.films); 
-
-            console.log(resdata.message);
+            const resultdata=await result.json(); // get the data from the server in json format
 
             setData({
-                films:resdata.films.map(film=>{
-                    return{...film}
-                }),
-                message:resdata.message, totalcnt:resdata.totalcnt});
-
-            // setData(resdata.map(film=>{
-            //         return{
-            //             // ...film,
-            //             // ImagePath:film.imageUrl
-            //             message: film.message
-            //         }
-            //     })
-            // );
-
-            console.log(data.films[2].imageUrl);
-
-
-
+                films:resultdata.films.map(film=>{  return{...film}  }),
+                message:resultdata.message, totalcnt:resultdata.totalcnt});
         }
         catch(err){
             console.log('error encountered'+err);
@@ -67,7 +34,7 @@ const ContainerHome=()=>
 
     // I had to put the useEffect here because then LoadPosts will already been defined
     useEffect(()=>{
-        const socket=openSocket('http://localhost:5001');
+        const socket=openSocket(process.env.REACT_APP_NodeURL);
         
         LoadPosts();
         
@@ -76,13 +43,24 @@ const ContainerHome=()=>
         return()=>socket.disconnect();
       },[LoadPosts]);
 
+
+
+
+    const deleteFilm=(id)=>{
+        console.log('delete button clicked');
+        console.log(id);
+    };
+
     return(
+        data?   //If data has returned from node then display or else display loading text
         <>
             <MainHeader />
             {/* The pics folder must be in the public folder for the following code to work */}
-            <Posts {...data} />
+            <Posts {...data} deleteFilm={deleteFilm} />
         </>
-    )
+        :
+        <>Loading</>
+    );
 
 }/**'const ContainerHome=()=>' delimiter */
 
